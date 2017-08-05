@@ -1,6 +1,12 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Player.unity.meta
 guid: 68f2289b6f1af6e4ba8e53c8454a200b
 timeCreated: 1501940157
+=======
+guid: b403472b4ee323d4ebe901cdac9d721a
+folderAsset: yes
+timeCreated: 1501942203
+>>>>>>> Prototype:Assets/Materials.meta
 licenseType: Pro
 DefaultImporter:
   userData: 
