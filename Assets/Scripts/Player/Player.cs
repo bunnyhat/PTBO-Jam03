@@ -41,8 +41,7 @@ public class Player : MonoBehaviour {
 
 	void OnCollisionEnter(Collision other){
 		if(other.gameObject.tag == "Ball"){
-			m_ballRGB.AddForce(0 , 0, 2800f);
-			
+			m_ballRGB.AddForce(0 , 0, 10f);			
 		}
 	}
 	
@@ -60,7 +59,7 @@ void Update () {
 		m_position = new Vector3(xPos, 0.5f, -47.19f);
 		// m_position.y = Mathf.Clamp(this.gameObject.transform.position.y, 0.5f ,0.5f);
 		//m_position.z = Mathf.Clamp(this.gameObject.transform.position.z, -47.19f, -47.19f);
-		m_position = new Vector3(Mathf.Clamp(xPos, -68, 68), 0.5f, -47.19f);
+		m_position = new Vector3(Mathf.Clamp(xPos, -68, 68), 0.5f, -48f);
 		transform.position = m_position;
 
 		if(Input.GetKeyDown(KeyCode.Space) && m_haveBall){

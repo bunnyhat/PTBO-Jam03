@@ -12,7 +12,7 @@ public class Ball : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		m_rgb = GetComponent<Rigidbody>();
-		m_ballForce = new Vector3(0f, 0.0f, 9000.0f);
+		m_ballForce = new Vector3(500.0f, 0.0f, 3500.0f);
 		m_activeBall = false;
 		m_ballPosition = transform.position;
 		
@@ -26,7 +26,7 @@ public class Ball : MonoBehaviour {
 		}
 
 			float velz = m_rgb.velocity.z;
-			velz = Mathf.Clamp(m_rgb.velocity.z, 1000, 9000);
+			velz = Mathf.Clamp(m_rgb.velocity.z, 0.1f, 1.0f);
 
 			Debug.Log(velz);
 
