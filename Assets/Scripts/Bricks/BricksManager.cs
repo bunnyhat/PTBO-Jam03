@@ -23,7 +23,7 @@ public class BricksManager : MonoBehaviour {
 	public float m_startZ;
 
 	private int m_fieldHeight = 150;
-	private int m_fieldWidth = 150;
+	private int m_fieldWidth = 145;
 	private string[ , ] m_playField;
 
 	// Use this for initialization
@@ -37,7 +37,15 @@ public class BricksManager : MonoBehaviour {
 		string block = "";
 		for(int r = 0; r < m_fieldHeight; r++) {
 			for (int c = 0; c < m_fieldWidth; c++) {
-				switch (r) {
+				switch (r) {					
+					case 80:
+						block = "C";
+						break;
+
+					case 85:
+						block = "P";
+						break;
+
 					case 90:
 						block = "W";
 						break;
@@ -68,7 +76,7 @@ public class BricksManager : MonoBehaviour {
 		tmpPos = Vector3.zero;
 
 		for(float r = 0, z = m_startZ; r < m_fieldHeight; r++, z -= 0.5f) {
-			for(int c = 0; c < m_fieldWidth; c += 6) {
+			for(int c = 0; c < m_fieldWidth; c += 8) {
 				if(m_playField[(int)r,c] != " ") {
 					tmpPos.x = c - 72;
 					tmpPos.z = z;
@@ -92,12 +100,12 @@ public class BricksManager : MonoBehaviour {
 				break;
 
 			case "P":
-				tmpObj.GetComponent<MeshRenderer>().material.color = Color.cyan;
+				tmpObj.GetComponent<MeshRenderer>().material.color = Color.red;
 				retBrick = BrickType.POWERUP_BRICK;
 				break;
 
 			case "C":
-				tmpObj.GetComponent<MeshRenderer>().material.color = Color.blue;
+				tmpObj.GetComponent<MeshRenderer>().material.color = Color.yellow;
 				retBrick = BrickType.NORMAL;
 				break;
 		}
