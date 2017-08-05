@@ -1,8 +1,15 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Materials.meta
+guid: b403472b4ee323d4ebe901cdac9d721a
+folderAsset: yes
+timeCreated: 1501944952
+licenseType: Pro
+=======
 guid: c0b2d97f00ec5474e9e21c2ed80c9d30
 folderAsset: yes
 timeCreated: 1501942648
 licenseType: Free
+>>>>>>> Bricks:Assets/Material.meta
 DefaultImporter:
   userData: 
   assetBundleName: 
