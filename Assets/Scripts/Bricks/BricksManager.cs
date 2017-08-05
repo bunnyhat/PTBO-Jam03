@@ -27,8 +27,8 @@ public class BricksManager : MonoBehaviour {
 	public Transform m_brickContainer;
 	public float m_startZ;
 
-	private int m_fieldHeight = 26;
-	private int m_fieldWidth = 13;
+	private int m_fieldHeight = 15;
+	private int m_fieldWidth = 15;
 	private string[ , ] m_playField;
 
 	// Use this for initialization
@@ -63,12 +63,13 @@ public class BricksManager : MonoBehaviour {
 
 		tmpPos = Vector3.zero;
 
-		for(float r = 0, z = m_startZ; r < m_fieldHeight; r++, z -= 0.5f) {
+		for(float r = 0, z = m_startZ; r < m_fieldHeight; r++, z -= 15f) {
 			for(int c = 0; c < m_fieldWidth; c++) {
 				if(m_playField[(int)r,c] != " ") {
 					tmpPos.x = c + 1;
 					tmpPos.z = z;
 					tmpBrick = Instantiate(m_brick, tmpPos, Quaternion.identity);
+					tmpBrick.transform.Rotate(0, 90, 0);
 					tmpBrick.name = "Brick";
 					tmpBrick.transform.parent = m_brickContainer;
 					GetBrickType(tmpBrick, (int) r, c);
@@ -91,6 +92,20 @@ public class BricksManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+		if(Input.GetKey(KeyCode.O)){
+			dBugField();
+		}
+	}
+
+	// dBugging
+	private void dBugField() {
+		string outS = "";
+		for(int r = 0; r < m_fieldHeight; r++) {
+			for(int c = 0; c < m_fieldWidth; c++) {
+				outS += "[" + m_playField[r, c] + "]";
+			}
+			outS += "\n";
+		}
+		Debug.Log(outS);
 	}
 }
