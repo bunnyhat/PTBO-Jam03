@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: ae0419d0bf2b9c546b964eb24f7e52b0
+timeCreated: 1501946869
+licenseType: Pro
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Breakout
+  fontNames:
+  - Breakout
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
