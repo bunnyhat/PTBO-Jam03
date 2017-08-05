@@ -28,7 +28,7 @@ public class BricksManager : MonoBehaviour {
 	public float m_startZ;
 
 	private int m_fieldHeight = 15;
-	private int m_fieldWidth = 15;
+	private int m_fieldWidth = 150;
 	private string[ , ] m_playField;
 
 	// Use this for initialization
@@ -64,7 +64,7 @@ public class BricksManager : MonoBehaviour {
 		tmpPos = Vector3.zero;
 
 		for(float r = 0, z = m_startZ; r < m_fieldHeight; r++, z -= 15f) {
-			for(int c = 0; c < m_fieldWidth; c++) {
+			for(int c = 0; c < m_fieldWidth; c += 10) {
 				if(m_playField[(int)r,c] != " ") {
 					tmpPos.x = c + 1;
 					tmpPos.z = z;
@@ -83,7 +83,7 @@ public class BricksManager : MonoBehaviour {
 
 		switch(m_playField[r,c]) {
 			case "W":
-				tmpObj.GetComponent<MeshRenderer>().material.color = Color.white;
+				tmpObj.GetComponent<MeshRenderer>().material.color = Color.red;
 				retBrick = BrickType.NORMAL;
 				break;
 		}
