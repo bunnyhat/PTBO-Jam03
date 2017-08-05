@@ -26,7 +26,7 @@ public class Ball : MonoBehaviour {
 		}
 
 			float velz = m_rgb.velocity.z;
-			velz = Mathf.Clamp(m_rgb.velocity.z, 0.1f, 1.0f);
+			velz = Mathf.Clamp(m_rgb.velocity.z, 0.1f, 5.0f);
 
 			Debug.Log(velz);
 
