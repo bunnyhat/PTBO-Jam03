@@ -44,7 +44,7 @@ public class BricksManager : MonoBehaviour {
 			for (int c = 0; c < m_fieldWidth; c++) {
 				switch (r) {
 					case 1:
-						block = "W";
+						block = "R";
 						break;
 					
 					default:
@@ -63,10 +63,10 @@ public class BricksManager : MonoBehaviour {
 
 		tmpPos = Vector3.zero;
 
-		for(float r = 0, z = m_startZ; r < m_fieldHeight; r++, z -= 15f) {
+		for(float r = 0, z = m_startZ; r < m_fieldHeight; r++, z--) {
 			for(int c = 0; c < m_fieldWidth; c += 10) {
 				if(m_playField[(int)r,c] != " ") {
-					tmpPos.x = c + 1;
+					tmpPos.x = c - 70;
 					tmpPos.z = z;
 					tmpBrick = Instantiate(m_brick, tmpPos, Quaternion.identity);
 					tmpBrick.transform.Rotate(0, 90, 0);
@@ -82,7 +82,7 @@ public class BricksManager : MonoBehaviour {
 		BrickType retBrick = BrickType.NONE;
 
 		switch(m_playField[r,c]) {
-			case "W":
+			case "R":
 				tmpObj.GetComponent<MeshRenderer>().material.color = Color.red;
 				retBrick = BrickType.NORMAL;
 				break;
