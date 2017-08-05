@@ -16,18 +16,13 @@ public enum BrickType {
 	MID_LAYER
 }
 
-// [System.Serializable]
-// public class BrickLayers {
-// 	public GameObject[] m_bricks;
-// }
-
 public class BricksManager : MonoBehaviour {
 	public GameObject m_brick;
 	// public BrickLayers[] m_brickLayers;
 	public Transform m_brickContainer;
 	public float m_startZ;
 
-	private int m_fieldHeight = 15;
+	private int m_fieldHeight = 150;
 	private int m_fieldWidth = 150;
 	private string[ , ] m_playField;
 
@@ -43,8 +38,16 @@ public class BricksManager : MonoBehaviour {
 		for(int r = 0; r < m_fieldHeight; r++) {
 			for (int c = 0; c < m_fieldWidth; c++) {
 				switch (r) {
-					case 1:
-						block = "R";
+					case 90:
+						block = "W";
+						break;
+
+					case 95:
+						block = "P";
+						break;
+
+					case 100:
+						block = "C";
 						break;
 					
 					default:
@@ -55,6 +58,7 @@ public class BricksManager : MonoBehaviour {
 				m_playField[r, c] = block;
 			}
 		}
+	
 	}
 
 	void CreateLevel() {
@@ -63,10 +67,10 @@ public class BricksManager : MonoBehaviour {
 
 		tmpPos = Vector3.zero;
 
-		for(float r = 0, z = m_startZ; r < m_fieldHeight; r++, z--) {
-			for(int c = 0; c < m_fieldWidth; c += 10) {
+		for(float r = 0, z = m_startZ; r < m_fieldHeight; r++, z -= 0.5f) {
+			for(int c = 0; c < m_fieldWidth; c += 6) {
 				if(m_playField[(int)r,c] != " ") {
-					tmpPos.x = c - 70;
+					tmpPos.x = c - 72;
 					tmpPos.z = z;
 					tmpBrick = Instantiate(m_brick, tmpPos, Quaternion.identity);
 					tmpBrick.transform.Rotate(0, 90, 0);
@@ -82,8 +86,18 @@ public class BricksManager : MonoBehaviour {
 		BrickType retBrick = BrickType.NONE;
 
 		switch(m_playField[r,c]) {
-			case "R":
-				tmpObj.GetComponent<MeshRenderer>().material.color = Color.red;
+			case "W":
+				tmpObj.GetComponent<MeshRenderer>().material.color = Color.white;
+				retBrick = BrickType.MID_LAYER;
+				break;
+
+			case "P":
+				tmpObj.GetComponent<MeshRenderer>().material.color = Color.cyan;
+				retBrick = BrickType.POWERUP_BRICK;
+				break;
+
+			case "C":
+				tmpObj.GetComponent<MeshRenderer>().material.color = Color.blue;
 				retBrick = BrickType.NORMAL;
 				break;
 		}

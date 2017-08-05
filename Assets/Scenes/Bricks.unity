@@ -153,7 +153,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_brick: {fileID: 1193533635612842, guid: 2ea88ad0cabadb5469d21e45d7b17050, type: 2}
   m_brickContainer: {fileID: 72060091}
-  m_startZ: 0
+  m_startZ: 45
 --- !u!1 &72060090
 GameObject:
   m_ObjectHideFlags: 0
