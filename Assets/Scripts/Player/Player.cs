@@ -15,6 +15,8 @@ public class Player : MonoBehaviour {
 
 	private Vector3 m_position = new Vector3(0f, 0f, 0f);
 
+	
+
 	//Player's current power-up
 	//TODO:Fix dis
 	//public Powerup m_powerup;
@@ -26,14 +28,27 @@ public class Player : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		float xPos = transform.position.x + ((Input.GetAxis("Horizontal") * m_speed) * Time.deltaTime);
+void Update () {
+	
+		
+
+	if(this.gameObject.tag == "Player 2"){
+		float xPos = transform.position.x + ((Input.GetAxis("Horizontal 2") * m_speed) * Time.deltaTime);
 		m_position = new Vector3(xPos, 0, 0);
-		m_position.y = Mathf.Clamp(this.gameObject.transform.position.y, 0.5f ,0.5f);
-		m_position.z = Mathf.Clamp(this.gameObject.transform.position.z, -47.19f, -47.19f);
+		// m_position.y = Mathf.Clamp(this.gameObject.transform.position.y, 0.5f ,0.5f);
+		// m_position.z = Mathf.Clamp(this.gameObject.transform.position.z, 45.7f, 45.7f);
+		m_position = new Vector3(Mathf.Clamp(xPos, -68, 68), 0.5f, 45.7f);
+		transform.position = m_position;
+	} else {
+		float xPos = transform.position.x + ((Input.GetAxis("Horizontal") * m_speed) * Time.deltaTime);
+		m_position = new Vector3(xPos, 0.5f, -47.19f);
+		// m_position.y = Mathf.Clamp(this.gameObject.transform.position.y, 0.5f ,0.5f);
+		//m_position.z = Mathf.Clamp(this.gameObject.transform.position.z, -47.19f, -47.19f);
+		m_position = new Vector3(Mathf.Clamp(xPos, -68, 68), 0.5f, -47.19f);
 		transform.position = m_position;
 
-		Debug.Log(m_position);
-	
+		}
+
+		
 	}
 }
