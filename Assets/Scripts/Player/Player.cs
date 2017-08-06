@@ -48,7 +48,7 @@ public class Player : MonoBehaviour {
 
 	void OnCollisionEnter(Collision other){
 		if(other.gameObject.tag == "Ball"){
-			m_ballRGB.AddForce(0 , 0, 10f);			
+			// m_ballRGB.AddForce(0 , 0, 10f);			
 		}
 	}
 
@@ -92,11 +92,15 @@ void Update () {
 		m_position = new Vector3(Mathf.Clamp(xPos, -68, 68), 0.5f, -48f);
 		transform.position = m_position;
 
+<<<<<<< HEAD
 		if(Input.GetAxis("A") == 1 && m_haveBall){
 			Debug.Log("fuck");
+=======
+		if(Input.GetKeyDown(KeyCode.Space) && m_haveBall){
+>>>>>>> Bricks
 			m_ballRGB.isKinematic = false;
 			m_ball.transform.parent = null;
-			Vector3 velocity = GetComponent<Rigidbody>().velocity;
+			// Vector3 velocity = GetComponent<Rigidbody>().velocity;
 			m_ball.GetComponent<Ball>().Release();
 			m_haveBall = false;
 		}
