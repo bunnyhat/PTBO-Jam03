@@ -33,3 +33,6 @@ sysinfo.txt
 *.apk
 *.unitypackage
 .vscode/launch.json
+Assets/Scripts/Player/Player.cs
+*.cs
+Assets/Scripts/Powerups.meta
