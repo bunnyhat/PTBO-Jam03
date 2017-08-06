@@ -46,13 +46,6 @@ public class Ball : MonoBehaviour {
 		// }
 	}
 
-<<<<<<< HEAD
-	void OnCollisionEnter(Collision other){
-		if(other.gameObject.tag == "Brick"){
-			m_player.GetComponent<Player>().SetScore(50);
-		}
-	}
-=======
     float hitFactor(Vector3 ballPos, Vector3 racketPos,
                     float racketHeight) {
         // ascii art:
@@ -100,6 +93,10 @@ public class Ball : MonoBehaviour {
             // Set Velocity with dir * speed
             m_rgb.velocity = dir * m_speed;
         }
+
+		if(col.gameObject.name == "Brick"){
+			m_player.GetComponent<Player>().SetScore(50);
+		}
     }
 
 	// void OnCollisionEnter(Collision other){
@@ -112,7 +109,6 @@ public class Ball : MonoBehaviour {
 	// 		// velz = Mathf.Clamp(m_rgb.velocity.z, velz, velz * 2);
 	// 	}
 	// }
->>>>>>> Bricks
 
 	public void MakeInactive(){
 		m_activeBall = false;
