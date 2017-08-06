@@ -164,10 +164,16 @@ public class Ball : MonoBehaviour {
 
 	public void Release(){
 		if(!m_activeBall){
-			m_rgb.isKinematic = false;
-			m_rgb.velocity = Vector3.forward * m_speed;
-			// m_rgb.AddForce(m_ballForce);
-			m_activeBall = true;
+				if(m_player.tag == "Player 1") {
+				m_rgb.isKinematic = false;
+				m_rgb.velocity = Vector3.forward * m_speed;
+				// m_rgb.AddForce(m_ballForce);
+				m_activeBall = true;
+			} else { 
+				m_rgb.isKinematic = false;
+				m_rgb.velocity = Vector3.back * m_speed;
+				m_activeBall = true;
+			}
 		}
 	}
 

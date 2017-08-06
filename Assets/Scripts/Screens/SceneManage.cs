@@ -14,6 +14,7 @@ public class SceneManage : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		
 		if(Input.GetAxis("A") == 1 || Input.GetAxis("A_2") == 1){
 			SceneManager.LoadScene("main");
 		}
