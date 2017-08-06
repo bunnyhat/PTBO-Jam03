@@ -42,7 +42,9 @@ public class Ball : MonoBehaviour {
 	}
 
 	void OnCollisionEnter(Collision other){
-		m_rgb.AddForce(0, 0, 2500f);
+		if(other.gameObject.tag == "Brick"){
+			m_player.GetComponent<Player>().SetScore(50);
+		}
 	}
 
 	public void MakeInactive(){

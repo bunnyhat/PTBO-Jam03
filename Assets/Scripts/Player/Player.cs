@@ -51,6 +51,10 @@ public class Player : MonoBehaviour {
 			m_ballRGB.AddForce(0 , 0, 10f);			
 		}
 	}
+
+	public void SetScore(int score){
+		m_score += score;
+	}
 	
 	// Update is called once per frame
 void Update () {
@@ -98,6 +102,8 @@ void Update () {
 		}
 
 	}
+		m_scoreText.text = m_score.ToString();
+		Debug.Log(m_score);
 		
 	}
 }
