@@ -20,6 +20,8 @@ public class Player : MonoBehaviour {
 	//Player's movement speed. Will change depending on power-ups.
 	public float m_p1Speed, m_p2Speed = 30f;
 
+	public float m_playerBrickCount;
+
 	private Vector3 m_position = new Vector3(0f, 0f, 0f);
 
 	public int m_score;
@@ -31,6 +33,7 @@ public class Player : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		m_powerupManager = GameObject.FindGameObjectWithTag("Powerup").GetComponent<PowerupsManager>();
+		m_playerBrickCount = 0;
 
 		m_ballRGB = m_ball.GetComponent<Rigidbody>();
 		m_haveBall = true;
@@ -38,7 +41,6 @@ public class Player : MonoBehaviour {
 
 		if(this.gameObject.tag == "Player 1") {
 			m_color = Color.red;
-			
 		} else {
 			m_color = Color.blue;
 			
@@ -47,6 +49,10 @@ public class Player : MonoBehaviour {
 
 	public void HaveBall(){
 		m_haveBall = true;
+	}
+
+	public void AddBrickCount(int playerBrickCount) {
+		m_playerBrickCount += playerBrickCount;
 	}
 
 	void OnCollisionEnter(Collision other){
@@ -61,6 +67,7 @@ public class Player : MonoBehaviour {
 	
 	// Update is called once per frame
 void Update () {
+	Debug.Log(m_playerBrickCount);
 	if(this.gameObject.tag == "Player 2"){
 		//Keyboard Controls
 		//float xPos = transform.position.x + ((Input.GetAxis("Horizontal 2") * m_speed) * Time.deltaTime);

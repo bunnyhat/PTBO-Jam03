@@ -18,11 +18,12 @@ public enum BrickType {
 
 public class BricksManager : MonoBehaviour {
 	public GameObject m_brick;
+	public GameObject m_outterBrick;
+	public GameObject m_player;
 	// public BrickLayers[] m_brickLayers;
 	public Transform m_brickContainer;
 	public BrickType m_bricktype;
 	public float m_startZ;
-	public int m_playerIndex;
 
 	private int m_fieldHeight = 150;
 	private int m_fieldWidth = 145;
@@ -46,12 +47,10 @@ public class BricksManager : MonoBehaviour {
 			for (int c = 0; c < m_fieldWidth; c++) {
 				switch (r) {					
 					case 80:
-						m_playerIndex = 2;
 						block = "C";
 						break;
 
 					case 85:
-						m_playerIndex = 2;
 						block = "P";
 						break;
 
@@ -60,12 +59,10 @@ public class BricksManager : MonoBehaviour {
 						break;
 
 					case 95:
-						m_playerIndex = 1;
 						block = "P";
 						break;
 
 					case 100:
-						m_playerIndex = 1;
 						block = "C";
 						break;
 					
@@ -101,6 +98,35 @@ public class BricksManager : MonoBehaviour {
 		}
 	}
 
+	public void SpecialMove(int playerIndex) {
+		float remainderBricks;
+		remainderBricks = m_player.GetComponent<Player>().m_playerBrickCount;
+		
+		m_outterBrick.tag = "OutterBrick";
+		Destroy(m_outterBrick);
+
+		string block = "";
+		for(int r = 0; r < m_fieldHeight; r++) {
+			for (int c = 0; c < m_fieldWidth; c++) {
+				switch (r) {					
+					case 80:
+						block = "C";
+						break;
+
+					case 100:
+						block = "C";
+						break;
+					
+					default:
+						block = " ";
+						break;
+				}
+
+				m_playField[r, c] = block;
+			}
+		}
+	}
+
 	private BrickType GetBrickType(GameObject tmpObj, int r, int c) {
 		BrickType retBrick = BrickType.NONE;
 
@@ -118,6 +144,7 @@ public class BricksManager : MonoBehaviour {
 
 			case "C":
 				tmpObj.GetComponent<MeshRenderer>().material.color = Color.yellow;
+				tmpObj.tag = "OutterBrick";
 				retBrick = BrickType.NORMAL;
 				break;
 		}

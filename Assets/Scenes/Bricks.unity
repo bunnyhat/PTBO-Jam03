@@ -157,7 +157,6 @@ MonoBehaviour:
   m_brickContainer: {fileID: 72060091}
   m_bricktype: 0
   m_startZ: 45
-  m_playerIndex: 0
 --- !u!82 &53945000
 AudioSource:
   m_ObjectHideFlags: 0
@@ -624,6 +623,7 @@ MonoBehaviour:
   m_playerWidth: 0
   m_p1Speed: 0
   m_p2Speed: 30
+  m_playerBrickCount: 0
   m_score: 0
   m_scoreText: {fileID: 686149151}
 --- !u!4 &545637402
@@ -692,6 +692,7 @@ MonoBehaviour:
   m_playerWidth: 0
   m_p1Speed: 0
   m_p2Speed: 30
+  m_playerBrickCount: 0
   m_score: 0
   m_scoreText: {fileID: 1228475920}
 --- !u!1 &672829272
@@ -1455,6 +1456,7 @@ MonoBehaviour:
   m_audioSource: {fileID: 1213158888}
   m_BAHHgel: {fileID: 8300000, guid: 2f3749b3cac3b8e43bdcd1597b23a7dd, type: 3}
   m_legHHAB: {fileID: 8300000, guid: 0cd821f9e2615544a98de549b206f6df, type: 3}
+  m_playerScript: {fileID: 644689805}
 --- !u!23 &1213158884
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1889,6 +1891,7 @@ MonoBehaviour:
   m_audioSource: {fileID: 1213158888}
   m_BAHHgel: {fileID: 8300000, guid: 2f3749b3cac3b8e43bdcd1597b23a7dd, type: 3}
   m_legHHAB: {fileID: 8300000, guid: 0cd821f9e2615544a98de549b206f6df, type: 3}
+  m_playerScript: {fileID: 545637401}
 --- !u!23 &1325285194
 MeshRenderer:
   m_ObjectHideFlags: 0

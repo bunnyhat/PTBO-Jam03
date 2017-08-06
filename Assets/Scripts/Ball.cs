@@ -11,12 +11,16 @@ public class Ball : MonoBehaviour {
 	public GameObject m_player;
 	public AudioSource m_audioSource;
 	public AudioClip m_BAHHgel, m_legHHAB;
+
+	public Player m_playerScript;
 	
 
 	float velz;
 
 	// Use this for initialization
 	void Start () {
+		m_playerScript = GameObject.FindGameObjectWithTag("Player 1").GetComponent<Player>();
+
 		m_rgb = GetComponent<Rigidbody>();
 		m_ballForce = new Vector3(500.0f, 0.0f, 3500.0f);
 		m_activeBall = false;
@@ -111,6 +115,15 @@ public class Ball : MonoBehaviour {
 			m_audioSource.PlayOneShot(m_BAHHgel, 1);
 			m_player.GetComponent<Player>().SetScore(50);
 			Destroy(col.gameObject);
+		}
+
+		if(col.gameObject.tag == "OutterBrick") {
+			m_player.GetComponent<Player>().AddBrickCount(1);
+			m_audioSource.PlayOneShot(m_BAHHgel, 1);
+			m_player.GetComponent<Player>().SetScore(50);
+			Destroy(col.gameObject);
+			Debug.Log("this is being hit");
+			
 		}
 
 
