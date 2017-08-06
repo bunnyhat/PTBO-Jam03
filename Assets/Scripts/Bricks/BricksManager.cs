@@ -20,6 +20,7 @@ public class BricksManager : MonoBehaviour {
 	public GameObject m_brick;
 	// public BrickLayers[] m_brickLayers;
 	public Transform m_brickContainer;
+	public BrickType m_bricktype;
 	public float m_startZ;
 
 	private int m_fieldHeight = 150;
@@ -96,11 +97,12 @@ public class BricksManager : MonoBehaviour {
 		switch(m_playField[r,c]) {
 			case "W":
 				tmpObj.GetComponent<MeshRenderer>().material.color = Color.white;
+				tmpObj.tag = "MidBrick";
 				retBrick = BrickType.MID_LAYER;
 				break;
 
 			case "P":
-				tmpObj.GetComponent<MeshRenderer>().material.color = Color.red;
+				tmpObj.GetComponent<MeshRenderer>().material.color = Color.green;
 				retBrick = BrickType.POWERUP_BRICK;
 				break;
 

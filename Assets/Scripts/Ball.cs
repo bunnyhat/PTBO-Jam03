@@ -9,6 +9,7 @@ public class Ball : MonoBehaviour {
 	private Vector3 m_ballForce;
 	public float m_speed = 30;
 	public GameObject m_player;
+	
 
 	float velz;
 
@@ -94,8 +95,22 @@ public class Ball : MonoBehaviour {
             m_rgb.velocity = dir * m_speed;
         }
 
-		if(col.gameObject.name == "Brick"){
+		if(col.gameObject.tag == "MidBrick") {
+			Debug.Log("Middle Brick Hit by: " + gameObject.tag);
+			// Debug.Log("Middle Brick Hit by: " + gameObject.GetComponent<Player>().name);
+			if(col.gameObject.GetComponent<MeshRenderer>().material.color != m_player.GetComponent<Player>().m_color) {
+				col.gameObject.GetComponent<MeshRenderer>().material.color = m_player.GetComponent<Player>().m_color;
+				Debug.Log("Color should change...");
+			} else if(col.gameObject.GetComponent<MeshRenderer>().material.color == m_player.GetComponent<Player>().m_color) {
+				Debug.Log("Brick goes Boom!");
+				m_player.GetComponent<Player>().SetScore(50);
+				Destroy(col.gameObject);
+			}
+		}
+
+		if(col.gameObject.tag == "Brick"){
 			m_player.GetComponent<Player>().SetScore(50);
+			Destroy(col.gameObject);
 		}
     }
 
