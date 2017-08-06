@@ -27,8 +27,13 @@ public class BricksManager : MonoBehaviour {
 	private int m_fieldWidth = 145;
 	private string[ , ] m_playField;
 
+	AudioSource m_audioSource;
+
 	// Use this for initialization
 	void Start () {
+		m_audioSource = GetComponent<AudioSource>();
+		m_audioSource.PlayOneShot(m_audioSource.clip, 0.556f);
+
 		m_playField = new string[m_fieldHeight, m_fieldWidth];
 		LevelStart();
 		CreateLevel();
