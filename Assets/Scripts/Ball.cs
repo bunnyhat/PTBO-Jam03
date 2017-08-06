@@ -136,13 +136,13 @@ public class Ball : MonoBehaviour {
 				Debug.Log("Color should change...");
 			} else if(col.gameObject.GetComponent<MeshRenderer>().material.color == m_player.GetComponent<Player>().m_color) {
 				Debug.Log("Brick goes Boom!");
-				m_player.GetComponent<Player>().SetScore(50);
+				m_player.GetComponent<Player>().SetScore(1);
 				Destroy(col.gameObject);
 			}
 		}
 
 		if(col.gameObject.tag == "Brick"){
-			m_player.GetComponent<Player>().SetScore(50);
+			m_player.GetComponent<Player>().SetScore(1);
 			Destroy(col.gameObject);
 		}
     }
