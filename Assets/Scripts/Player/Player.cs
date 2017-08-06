@@ -42,10 +42,10 @@ public class Player : MonoBehaviour {
 
 		if(this.gameObject.tag == "Player 1") {
 			m_color = Color.red;
-			this.gameObject.GetComponentInChildren<MeshRenderer>().material.color = Color.red;
+			
 		} else {
 			m_color = Color.blue;
-			this.gameObject.GetComponentInChildren<MeshRenderer>().material.color = Color.blue;
+			
 		}
 	}
 
