@@ -25,6 +25,8 @@ public class Player : MonoBehaviour {
 	public int m_score;
 
 	public Text m_scoreText;
+
+	public Slider m_slider;
 	
 
 	
@@ -39,6 +41,7 @@ public class Player : MonoBehaviour {
 		m_ballRGB = m_ball.GetComponent<Rigidbody>();
 		m_haveBall = true;
 		m_scoreText.text = m_score.ToString();
+		m_slider.value = m_score;
 
 		if(this.gameObject.tag == "Player 1") {
 			m_color = Color.red;
@@ -105,5 +108,6 @@ void Update () {
 	}
 
 		m_scoreText.text = m_score.ToString();
+		m_slider.value = m_score;
 	}
 }
