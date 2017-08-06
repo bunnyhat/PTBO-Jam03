@@ -93,6 +93,10 @@ public class Ball : MonoBehaviour {
             // Set Velocity with dir * speed
             m_rgb.velocity = dir * m_speed;
         }
+
+		if(col.gameObject.name == "Brick"){
+			m_player.GetComponent<Player>().SetScore(50);
+		}
     }
 
 	// void OnCollisionEnter(Collision other){
