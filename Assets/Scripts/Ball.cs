@@ -42,10 +42,7 @@ public class Ball : MonoBehaviour {
 	}
 
 	void OnCollisionEnter(Collision other){
-		if(other.gameObject.tag == "Walls"){
-			// Debug.Log("Hit a Wall");
-			// m_rgb.AddForce(0, 0, 8000f);
-		}
+		m_rgb.AddForce(0, 0, 2500f);
 	}
 
 	public void MakeInactive(){
