@@ -10,16 +10,13 @@ public class Ball : MonoBehaviour {
 	public float m_speed = 60;
 	public GameObject m_player;
 	public AudioSource m_audioSource;
-
-	PowerupsManager m_powerupManager;
+	public AudioClip m_BAHHgel, m_legHHAB;
 	
 
 	float velz;
 
 	// Use this for initialization
 	void Start () {
-		m_powerupManager = GameObject.FindGameObjectWithTag("Powerup").GetComponent<PowerupsManager>();
-
 		m_rgb = GetComponent<Rigidbody>();
 		m_ballForce = new Vector3(500.0f, 0.0f, 3500.0f);
 		m_activeBall = false;
@@ -64,12 +61,6 @@ public class Ball : MonoBehaviour {
     }
 
 	void OnCollisionEnter(Collision col) {
-        // Note: 'col' holds the collision information. If the
-        // Ball collided with a racket, then:
-        //   col.gameObject is the racket
-        //   col.transform.position is the racket's position
-        //   col.collider is the racket's collider
-
 		if(this.gameObject.tag == "Player 1") {
 			// Hit the left Racket?
 			if (col.gameObject.name == "RacketLeft") {
@@ -104,6 +95,7 @@ public class Ball : MonoBehaviour {
 
 		if(col.gameObject.tag == "MidBrick") {
 			Debug.Log("Middle Brick Hit by: " + gameObject.tag);
+			m_audioSource.PlayOneShot(m_legHHAB, 1);
 			// Debug.Log("Middle Brick Hit by: " + gameObject.GetComponent<Player>().name);
 			if(col.gameObject.GetComponent<MeshRenderer>().material.color != m_player.GetComponent<Player>().m_color) {
 				col.gameObject.GetComponent<MeshRenderer>().material.color = m_player.GetComponent<Player>().m_color;
@@ -115,16 +107,25 @@ public class Ball : MonoBehaviour {
 			}
 		}
 
-		if(col.gameObject.tag == "Brick"){
-			m_audioSource.PlayOneShot(m_audioSource.clip, 1);
+		if(col.gameObject.tag == "Brick") {
+			m_audioSource.PlayOneShot(m_BAHHgel, 1);
 			m_player.GetComponent<Player>().SetScore(50);
 			Destroy(col.gameObject);
 		}
+
+
     }
 
-	void OnTriggerEnter(Collider other) {
-		if(other.gameObject.tag == "Powerup") {
-			m_powerupManager.m_hasGainedPup = true;
+	void OnTriggerExit(Collider other) {
+		if(m_player.name == "Player1") {
+			if(other.gameObject.tag == "Powerup") {
+				// Destroy(other.gameObject);
+			}
+		} else {
+			if(other.gameObject.tag == "Powerup") {
+				// m_powerupManager.m_pUpSpeed = -m_powerupManager.m_pUpSpeed;
+				Destroy(other.gameObject);
+			}
 		}
 	}
 

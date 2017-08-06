@@ -25,17 +25,13 @@ public class Player : MonoBehaviour {
 	public int m_score;
 
 	public Text m_scoreText;
-	
 
-	
-
-	//Player's current power-up
-	//TODO:Fix dis
-	//public Powerup m_powerup;
-
+	PowerupsManager m_powerupManager;
 
 	// Use this for initialization
 	void Start () {
+		m_powerupManager = GameObject.FindGameObjectWithTag("Powerup").GetComponent<PowerupsManager>();
+
 		m_ballRGB = m_ball.GetComponent<Rigidbody>();
 		m_haveBall = true;
 		m_scoreText.text = m_score.ToString();
@@ -54,8 +50,8 @@ public class Player : MonoBehaviour {
 	}
 
 	void OnCollisionEnter(Collision other){
-		if(other.gameObject.tag == "Ball"){
-			// m_ballRGB.AddForce(0 , 0, 10f);			
+		if(other.gameObject.tag == "Powerup") {
+			m_powerupManager.m_hasGainedPowerup = true;		
 		}
 	}
 
