@@ -20,7 +20,7 @@ public class BrickController : MonoBehaviour {
 
 	void OnCollisionEnter(Collision other) {
 		if(other.gameObject.tag == "Ball") {
-			Destroy(this.gameObject);
+			// Destroy(this.gameObject);
 			m_ballRGB.AddForce(0, 0, 6000f);
 			
 		}
