@@ -7,14 +7,19 @@ public class Ball : MonoBehaviour {
 	private Rigidbody m_rgb;
 	private Vector3 m_ballPosition;
 	private Vector3 m_ballForce;
-	public float m_speed = 30;
+	public float m_speed = 60;
 	public GameObject m_player;
+	public AudioSource m_audioSource;
+
+	PowerupsManager m_powerupManager;
 	
 
 	float velz;
 
 	// Use this for initialization
 	void Start () {
+		m_powerupManager = GameObject.FindGameObjectWithTag("Powerup").GetComponent<PowerupsManager>();
+
 		m_rgb = GetComponent<Rigidbody>();
 		m_ballForce = new Vector3(500.0f, 0.0f, 3500.0f);
 		m_activeBall = false;
@@ -58,75 +63,44 @@ public class Ball : MonoBehaviour {
         return (ballPos.y - racketPos.y) / racketHeight;
     }
 
-	    void OnCollisionEnter(Collision col) {
+	void OnCollisionEnter(Collision col) {
         // Note: 'col' holds the collision information. If the
         // Ball collided with a racket, then:
         //   col.gameObject is the racket
         //   col.transform.position is the racket's position
         //   col.collider is the racket's collider
 
-			if(this.gameObject.tag == "Player 1") {
-				// Hit the left Racket?
-				if (col.gameObject.name == "RacketLeft") {
-					// Calculate hit Factor
-					float z = hitFactor(transform.position,
-										col.transform.position,
-										col.collider.bounds.size.y);
-					
-					// Calculate direction, make length=1 via .normalized
-					Vector3 dir = new Vector3(-1, 1, z).normalized;
+		if(this.gameObject.tag == "Player 1") {
+			// Hit the left Racket?
+			if (col.gameObject.name == "RacketLeft") {
+				// Calculate hit Factor
+				float z = hitFactor(transform.position,
+									col.transform.position,
+									col.collider.bounds.size.y);
+				
+				// Calculate direction, make length=1 via .normalized
+				Vector3 dir = new Vector3(-1, 1, z).normalized;
 
-					Debug.Log(dir);
+				Debug.Log(dir);
 
-					// Set Velocity with dir * speed
-					m_rgb.velocity = dir * m_speed;
-				}
+				// Set Velocity with dir * speed
+				m_rgb.velocity = dir * m_speed;
+			}
 
-				// Hit the right Racket?
-				if (col.gameObject.name == "RacketRight") {
-					// Calculate hit Factor
-					float z = hitFactor(transform.position,
-										col.transform.position,
-										col.collider.bounds.size.y);
+			// Hit the right Racket?
+			if (col.gameObject.name == "RacketRight") {
+				// Calculate hit Factor
+				float z = hitFactor(transform.position,
+									col.transform.position,
+									col.collider.bounds.size.y);
 
-					// Calculate direction, make length=1 via .normalized
-					Vector3 dir = new Vector3(1, 1, z).normalized;
-					
-					// Set Velocity with dir * speed
-					m_rgb.velocity = dir * m_speed;
-				}
-			} 
-			// else {
-			// 	// Hit the left Racket?
-			// 	if (col.gameObject.name == "RacketLeft") {
-			// 		// Calculate hit Factor
-			// 		float z = hitFactor(transform.position,
-			// 							col.transform.position,
-			// 							col.collider.bounds.size.y);
-					
-			// 		// Calculate direction, make length=1 via .normalized
-			// 		Vector3 dir = new Vector3(-1, -1, -z).normalized;
-
-			// 		Debug.Log(dir);
-
-			// 		// Set Velocity with dir * speed
-			// 		m_rgb.velocity = dir * m_speed;
-			// 	}
-
-			// 	// Hit the right Racket?
-			// 	if (col.gameObject.name == "RacketRight") {
-			// 		// Calculate hit Factor
-			// 		float z = hitFactor(transform.position,
-			// 							col.transform.position,
-			// 							col.collider.bounds.size.y);
-
-			// 		// Calculate direction, make length=1 via .normalized
-			// 		Vector3 dir = new Vector3(1, -1, -z).normalized;
-					
-			// 		// Set Velocity with dir * speed
-			// 		m_rgb.velocity = dir * m_speed;
-			// 	}
-			// }
+				// Calculate direction, make length=1 via .normalized
+				Vector3 dir = new Vector3(1, 1, z).normalized;
+				
+				// Set Velocity with dir * speed
+				m_rgb.velocity = dir * m_speed;
+			}
+		}
 
 		if(col.gameObject.tag == "MidBrick") {
 			Debug.Log("Middle Brick Hit by: " + gameObject.tag);
@@ -142,21 +116,17 @@ public class Ball : MonoBehaviour {
 		}
 
 		if(col.gameObject.tag == "Brick"){
+			m_audioSource.PlayOneShot(m_audioSource.clip, 1);
 			m_player.GetComponent<Player>().SetScore(50);
 			Destroy(col.gameObject);
 		}
     }
 
-	// void OnCollisionEnter(Collision other){
-	// 	if(other.gameObject.tag == "Brick"){
-	// 		Debug.Log(m_rgb.velocity.z);
-	// 		// // Debug.Log("Hit a Wall");
-	// 		// velz = m_rgb.velocity.z;
-	// 		// // m_rgb.AddForce(Vector3.down, ForceMode.Impulse);
-	// 		// m_rgb.AddForce(0, 0, velz * 2);
-	// 		// velz = Mathf.Clamp(m_rgb.velocity.z, velz, velz * 2);
-	// 	}
-	// }
+	void OnTriggerEnter(Collider other) {
+		if(other.gameObject.tag == "Powerup") {
+			m_powerupManager.m_hasGainedPup = true;
+		}
+	}
 
 	public void MakeInactive(){
 		m_activeBall = false;

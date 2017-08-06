@@ -18,7 +18,7 @@ public class Player : MonoBehaviour {
 	public int m_playerWidth;
 
 	//Player's movement speed. Will change depending on power-ups.
-	public float m_speed = 30f;
+	public float m_p1Speed, m_p2Speed = 30f;
 
 	private Vector3 m_position = new Vector3(0f, 0f, 0f);
 
@@ -70,7 +70,7 @@ void Update () {
 		//float xPos = transform.position.x + ((Input.GetAxis("Horizontal 2") * m_speed) * Time.deltaTime);
 
 		//Xbox Controller
-		 float xPos = transform.position.x + ((Input.GetAxis("JoystickHoriz_2") * m_speed) * Time.deltaTime);
+		 float xPos = transform.position.x + ((Input.GetAxis("JoystickHoriz_2") * m_p2Speed) * Time.deltaTime);
 
 		m_position = new Vector3(xPos, 0, 0);
 		m_position = new Vector3(Mathf.Clamp(xPos, -68, 68), 0.5f, 48f);
@@ -88,7 +88,7 @@ void Update () {
 		//float xPos = transform.position.x + ((Input.GetAxis("Horizontal") * m_speed) * Time.deltaTime);
 
 		//Xbox Controller
-		 float xPos = transform.position.x + ((Input.GetAxis("JoystickHoriz") * m_speed) * Time.deltaTime);
+		 float xPos = transform.position.x + ((Input.GetAxis("JoystickHoriz") * m_p1Speed) * Time.deltaTime);
 
 
 		m_position = new Vector3(xPos, 0.5f, -47.19f);
