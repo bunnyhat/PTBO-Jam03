@@ -25,6 +25,7 @@ public class Player : MonoBehaviour {
 	public int m_score;
 
 	public Text m_scoreText;
+	
 
 	
 
@@ -41,8 +42,10 @@ public class Player : MonoBehaviour {
 
 		if(this.gameObject.tag == "Player 1") {
 			m_color = Color.red;
+			this.gameObject.GetComponentInChildren<MeshRenderer>().material.color = Color.red;
 		} else {
 			m_color = Color.blue;
+			this.gameObject.GetComponentInChildren<MeshRenderer>().material.color = Color.blue;
 		}
 	}
 
@@ -64,10 +67,10 @@ public class Player : MonoBehaviour {
 void Update () {
 	if(this.gameObject.tag == "Player 2"){
 		//Keyboard Controls
-		float xPos = transform.position.x + ((Input.GetAxis("Horizontal 2") * m_speed) * Time.deltaTime);
+		//float xPos = transform.position.x + ((Input.GetAxis("Horizontal 2") * m_speed) * Time.deltaTime);
 
 		//Xbox Controller
-		// float xPos = transform.position.x + ((Input.GetAxis("JoystickHoriz_2") * m_speed) * Time.deltaTime);
+		 float xPos = transform.position.x + ((Input.GetAxis("JoystickHoriz_2") * m_speed) * Time.deltaTime);
 
 		m_position = new Vector3(xPos, 0, 0);
 		m_position = new Vector3(Mathf.Clamp(xPos, -68, 68), 0.5f, 48f);
@@ -82,10 +85,10 @@ void Update () {
 	} else {
 
 		//Keyboard Controls
-		float xPos = transform.position.x + ((Input.GetAxis("Horizontal") * m_speed) * Time.deltaTime);
+		//float xPos = transform.position.x + ((Input.GetAxis("Horizontal") * m_speed) * Time.deltaTime);
 
 		//Xbox Controller
-		// float xPos = transform.position.x + ((Input.GetAxis("JoystickHoriz") * m_speed) * Time.deltaTime);
+		 float xPos = transform.position.x + ((Input.GetAxis("JoystickHoriz") * m_speed) * Time.deltaTime);
 
 
 		m_position = new Vector3(xPos, 0.5f, -47.19f);

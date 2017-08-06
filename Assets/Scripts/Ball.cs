@@ -64,36 +64,69 @@ public class Ball : MonoBehaviour {
         //   col.gameObject is the racket
         //   col.transform.position is the racket's position
         //   col.collider is the racket's collider
-        
-        // Hit the left Racket?
-        if (col.gameObject.name == "RacketLeft") {
-            // Calculate hit Factor
-            float z = hitFactor(transform.position,
-                                col.transform.position,
-                                col.collider.bounds.size.y);
-			
-            // Calculate direction, make length=1 via .normalized
-            Vector3 dir = new Vector3(-1, 1, z).normalized;
 
-			Debug.Log(dir);
+			if(this.gameObject.tag == "Player 1") {
+				// Hit the left Racket?
+				if (col.gameObject.name == "RacketLeft") {
+					// Calculate hit Factor
+					float z = hitFactor(transform.position,
+										col.transform.position,
+										col.collider.bounds.size.y);
+					
+					// Calculate direction, make length=1 via .normalized
+					Vector3 dir = new Vector3(-1, 1, z).normalized;
 
-            // Set Velocity with dir * speed
-            m_rgb.velocity = dir * m_speed;
-        }
+					Debug.Log(dir);
 
-        // Hit the right Racket?
-        if (col.gameObject.name == "RacketRight") {
-            // Calculate hit Factor
-            float z = hitFactor(transform.position,
-                                col.transform.position,
-                                col.collider.bounds.size.y);
+					// Set Velocity with dir * speed
+					m_rgb.velocity = dir * m_speed;
+				}
 
-            // Calculate direction, make length=1 via .normalized
-            Vector3 dir = new Vector3(1, 1, z).normalized;
-            
-            // Set Velocity with dir * speed
-            m_rgb.velocity = dir * m_speed;
-        }
+				// Hit the right Racket?
+				if (col.gameObject.name == "RacketRight") {
+					// Calculate hit Factor
+					float z = hitFactor(transform.position,
+										col.transform.position,
+										col.collider.bounds.size.y);
+
+					// Calculate direction, make length=1 via .normalized
+					Vector3 dir = new Vector3(1, 1, z).normalized;
+					
+					// Set Velocity with dir * speed
+					m_rgb.velocity = dir * m_speed;
+				}
+			} 
+			// else {
+			// 	// Hit the left Racket?
+			// 	if (col.gameObject.name == "RacketLeft") {
+			// 		// Calculate hit Factor
+			// 		float z = hitFactor(transform.position,
+			// 							col.transform.position,
+			// 							col.collider.bounds.size.y);
+					
+			// 		// Calculate direction, make length=1 via .normalized
+			// 		Vector3 dir = new Vector3(-1, -1, -z).normalized;
+
+			// 		Debug.Log(dir);
+
+			// 		// Set Velocity with dir * speed
+			// 		m_rgb.velocity = dir * m_speed;
+			// 	}
+
+			// 	// Hit the right Racket?
+			// 	if (col.gameObject.name == "RacketRight") {
+			// 		// Calculate hit Factor
+			// 		float z = hitFactor(transform.position,
+			// 							col.transform.position,
+			// 							col.collider.bounds.size.y);
+
+			// 		// Calculate direction, make length=1 via .normalized
+			// 		Vector3 dir = new Vector3(1, -1, -z).normalized;
+					
+			// 		// Set Velocity with dir * speed
+			// 		m_rgb.velocity = dir * m_speed;
+			// 	}
+			// }
 
 		if(col.gameObject.tag == "MidBrick") {
 			Debug.Log("Middle Brick Hit by: " + gameObject.tag);
