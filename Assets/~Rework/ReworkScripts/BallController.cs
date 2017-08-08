@@ -14,7 +14,7 @@ public class BallController : MonoBehaviour {
 
 	void Start() {
 		m_RB = GetComponent<Rigidbody>();
-		m_ballInitialForce = new Vector3(50.0f, 0.0f, 600.0f);
+		m_ballInitialForce = new Vector3(35.0f, 0.0f, 150.0f);
 		m_ballIsActive = false;
 		m_ballPosition = transform.position;
 	}

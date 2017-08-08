@@ -6,12 +6,11 @@ public class LevelManager : MonoBehaviour {
 
 	public GameObject m_brickPrefab;
 	public Transform m_brickContainer;
-	public float startZ;
+	private float startZ = 1.0f;
+	private float startX = -6.40f;
 
-	private Vector3 m_startPoint = new Vector3 (222.675f, 0.15f, -9.75f);
 
-
-	private const int m_fieldHeight = 19;
+	private const int m_fieldHeight = 5;
 	private const int m_fieldWidth = 13;
 	private string[,] m_playField;
 
@@ -29,23 +28,23 @@ public class LevelManager : MonoBehaviour {
 			for(int c = 0; c < m_fieldWidth; c++) {
 
 				switch(r) {
-					case 7:
+					case 0:
 						block = "Y"; // Grey
 						break;
 
-					case 8:
+					case 1:
 						block = "G"; // Red
 						break;
 
-					case 9:
+					case 2:
 						block = "W"; // Yellow
 						break;
 
-					case 10:
+					case 3:
 						block = "G"; // Cyan
 						break;
 
-					case 11:
+					case 4:
 						block = "Y"; // Magenta
 						break;
 
@@ -54,7 +53,7 @@ public class LevelManager : MonoBehaviour {
 					// 	break;
 
 					default:
-						block = "K";
+						block = " ";
 						break;
 				}
 
@@ -70,20 +69,19 @@ public class LevelManager : MonoBehaviour {
 		tmpPos = Vector3.zero;
 
 		for(float r = 0, z = startZ; r < m_fieldHeight; r++, z -= 0.5f) {
-			for(int c = 0; c < m_fieldWidth; c++) {
+			for(float c = 0, x = startX; c < m_fieldWidth; c++, x += 0.9f) {
 
-				if(m_playField[(int)r,c] != " ") {
-					tmpPos.x = c + 1;
+				if(m_playField[(int)r,(int)c] != " ") {
+					tmpPos.x = x + 1;
+					tmpPos.y = 0.2f;
 					tmpPos.z = z;
 					tmpBrick = Instantiate(m_brickPrefab, tmpPos, Quaternion.identity);
 					tmpBrick.name = "Brick";
 					tmpBrick.transform.parent = m_brickContainer;
-					GetBrickType(tmpBrick, (int)r, c);
+					GetBrickType(tmpBrick, (int)r, (int)c);
 				}
 			}
 		}
-
-		// m_brickContainer.position = m_startPoint;
 	}
 
 	private BrickTypes GetBrickType(GameObject tmpObj, int r, int c) {

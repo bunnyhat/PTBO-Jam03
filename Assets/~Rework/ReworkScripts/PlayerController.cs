@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour {
 	private Rigidbody m_ballRB;
 	private Vector3 m_playerPos;
 	private bool m_haveBall;
+	public Color m_color;
+	private Vector3 m_position = new Vector3(0f, 0f, 0f);
 
 	// private SuperPower m_currentPower;
 
@@ -17,12 +19,62 @@ public class PlayerController : MonoBehaviour {
 		m_ballRB = m_ball.GetComponent<Rigidbody>();
 		m_haveBall = true;
 		m_playerPos = transform.position;
+		// m_color = GetComponent<Mesh>();
 		// m_currentPower = SuperPower.NONE;
 	}
 
+	// void Update () {
+	// 	if(this.gameObject.tag == "Player 2"){
+	// 		//Keyboard Controls
+	// 		float xPos = transform.position.x + ((Input.GetAxis("Horizontal 2") * m_speed) * Time.deltaTime);
+
+	// 		//Xbox Controller
+	// 		//  float xPos = transform.position.x + ((Input.GetAxis("JoystickHoriz_2") * m_speed) * Time.deltaTime);
+
+	// 		m_position = new Vector3(xPos, 0.2f, 4.5f);
+	// 		m_playerPos = new Vector3(Mathf.Clamp(xPos, -5.65f, 5.65f), 0.2f, 4.5f);
+	// 		transform.position = m_position;
+
+	// 		if(Input.GetAxis("A_2") == 1 && m_haveBall || Input.GetKey(KeyCode.Return)){			
+	// 			m_ballRB.isKinematic = false;
+	// 			m_ball.transform.parent = null;
+	// 			m_ball.GetComponent<Ball>().Release();
+	// 			m_haveBall = false;
+	// 		}
+	// 	} else if(this.gameObject.tag == "Player 1") {
+
+	// 		//Keyboard Controls
+	// 		float xPos = transform.position.x + ((Input.GetAxis("Horizontal") * m_speed) * Time.deltaTime);
+
+	// 		//Xbox Controller
+	// 		//  float xPos = transform.position.x + ((Input.GetAxis("JoystickHoriz") * m_speed) * Time.deltaTime);
+
+
+	// 		m_position = new Vector3(xPos, 0.2f, -4.5f);
+	// 		m_playerPos = new Vector3(Mathf.Clamp(xPos, -5.65f, 5.65f), 0.2f, -4.5f);
+	// 		transform.position = m_position;
+
+	// 		if( (Input.GetAxis("A") == 1 && m_haveBall) || Input.GetKey(KeyCode.Space) ){			
+	// 			m_ballRB.isKinematic = false;
+	// 			m_ball.transform.parent = null;
+	// 			m_ball.GetComponent<BallController>().Release();
+	// 			m_haveBall = false;
+	// 		}
+
+	// 	}
+
+	// 	// // m_scoreText.text = m_score.ToString();
+	// 	// // m_slider.value = m_score;
+	// 	// // if(m_slider.value >= 38){
+	// 	// // 	m_lerp.m_isBarFull = true;
+	// 	// // 	m_lerp.BarFull();
+			
+	// 	// }
+	// }
+
 	void Update() {
 		float xPos = transform.position.x + (Input.GetAxis("Horizontal") * m_speed) * Time.deltaTime;
-		m_playerPos = new Vector3(Mathf.Clamp(xPos, 294.35f, 305.65f), 0.2f, -4.5f);
+		m_playerPos = new Vector3(Mathf.Clamp(xPos, -5.65f, 5.65f), 0.2f, -4.5f);
 		transform.position = m_playerPos;
 
 		if(Input.GetKeyDown(KeyCode.Space) && m_haveBall) {

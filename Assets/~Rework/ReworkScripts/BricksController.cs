@@ -11,8 +11,8 @@ public class BricksController : MonoBehaviour {
 // Violet
 // Yellow	- 120 points
 
-	private int m_hitsToKill;
-	private int m_numberOfHits;
+	public int m_hitsToKill;
+	public int m_numberOfHits;
 	private int m_points;
 
 	void Start() {
