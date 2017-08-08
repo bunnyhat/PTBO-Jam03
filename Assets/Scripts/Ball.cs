@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Ball : MonoBehaviour {
 	private bool m_activeBall;
@@ -9,7 +7,7 @@ public class Ball : MonoBehaviour {
 	private Vector3 m_ballForce;
 	public float m_speed = 30;
 	public GameObject m_player;
-	private int m_midBrickCount = 17;
+	private BrickTracker m_brickTracker;
 	
 
 	float velz;
@@ -20,6 +18,7 @@ public class Ball : MonoBehaviour {
 		m_ballForce = new Vector3(500.0f, 0.0f, 3500.0f);
 		m_activeBall = false;
 		m_ballPosition = transform.position;
+		m_brickTracker = GetComponent<BrickTracker>();
 	}
 	
 	// Update is called once per frame
@@ -138,8 +137,9 @@ public class Ball : MonoBehaviour {
 			} else if(col.gameObject.GetComponent<MeshRenderer>().material.color == m_player.GetComponent<Player>().m_color) {
 				// Debug.Log("Brick goes Boom!");
 				m_player.GetComponent<Player>().SetScore(1);
-				m_midBrickCount--;
-				Debug.Log("White Bricks Left in Play: " + m_midBrickCount);
+				Debug.Log(col.gameObject.GetComponentInParent<BricksManager>().BrickCountCheck());
+				// GetComponent<BrickTracker>().GetBrickCount();
+				// Debug.Log("White Bricks Left in Play: " + GetComponent<BrickTracker>().GetBrickCount());
 				// col.gameObject.GetComponent<BrickController>().m_brickType = BrickType.NONE;
 				// GetComponent<BricksManager>().m_playField[col.gameObject.gridPos, this] = " ";
 				Destroy(col.gameObject);

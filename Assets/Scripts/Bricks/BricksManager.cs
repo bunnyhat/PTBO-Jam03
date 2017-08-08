@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public enum BrickState {
 	SPAWNED,
@@ -27,7 +25,7 @@ public class BricksManager : MonoBehaviour {
 	private int m_fieldHeight = 5;
 	private int m_fieldWidth = 17;
 	public string[ , ] m_playField;
-	public int m_midBricksLeft = 17;
+	public BrickTracker m_midBrickTracker;
 
 	// Use this for initialization
 	void Start () {
@@ -82,6 +80,7 @@ public class BricksManager : MonoBehaviour {
 			for(float c = 0, x = m_startX; c < m_fieldWidth; c++, x += 7.5f) {
 				if(m_playField[(int)r,(int)c] != " ") {
 					tmpPos.x = c + x;
+					tmpPos.y = 1.5f;
 					tmpPos.z = z;
 					tmpBrick = Instantiate(m_brick, tmpPos, Quaternion.identity);
 					tmpBrick.transform.Rotate(0, 90, 0);
@@ -115,8 +114,11 @@ public class BricksManager : MonoBehaviour {
 		}
 		return retBrick;
 	}
+
+	public int BrickCountCheck() {
+		return m_midBrickTracker.GetBrickCount();
+	}
 	
-	// Update is called once per frame
 	void Update () {
 		if(Input.GetKey(KeyCode.O)){
 			dBugField();
