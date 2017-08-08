@@ -5,8 +5,8 @@ using UnityEngine;
 public class BrickController : MonoBehaviour {
 
 	public GameObject m_ball;
-
 	private Rigidbody m_ballRGB;
+	public BrickType m_brickType;
 
 	// Use this for initialization
 	void Start () {

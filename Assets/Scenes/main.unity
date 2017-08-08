@@ -154,7 +154,9 @@ MonoBehaviour:
   m_brick: {fileID: 1193533635612842, guid: 2ea88ad0cabadb5469d21e45d7b17050, type: 2}
   m_brickContainer: {fileID: 72060091}
   m_bricktype: 0
-  m_startZ: 45
+  m_startZ: 9
+  m_startX: -68
+  m_midBricksLeft: 17
 --- !u!1 &72060090
 GameObject:
   m_ObjectHideFlags: 0
@@ -176,8 +178,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 72060090}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -39.5, y: 4.7, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -70}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 53944998}

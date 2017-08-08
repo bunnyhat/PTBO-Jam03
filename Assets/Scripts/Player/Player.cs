@@ -30,6 +30,8 @@ public class Player : MonoBehaviour {
 
 	public LerpDerp m_lerp;
 
+	private int m_bricksLeft = 17;
+
 	
 
 	
