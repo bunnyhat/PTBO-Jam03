@@ -21,10 +21,10 @@ public class BricksManager : MonoBehaviour {
 	// public BrickLayers[] m_brickLayers;
 	public Transform m_brickContainer;
 	public BrickType m_bricktype;
-	public float m_startZ;
+	public float m_startZ = 17.0f;
 
-	private int m_fieldHeight = 150;
-	private int m_fieldWidth = 145;
+	private int m_fieldHeight = 30;
+	private int m_fieldWidth = 15;
 	private string[ , ] m_playField;
 
 	// Use this for initialization
@@ -39,23 +39,23 @@ public class BricksManager : MonoBehaviour {
 		for(int r = 0; r < m_fieldHeight; r++) {
 			for (int c = 0; c < m_fieldWidth; c++) {
 				switch (r) {					
-					case 80:
+					case 13:
 						block = "C";
 						break;
 
-					case 85:
+					case 14:
 						block = "P";
 						break;
 
-					case 90:
+					case 15:
 						block = "W";
 						break;
 
-					case 95:
+					case 16:
 						block = "P";
 						break;
 
-					case 100:
+					case 17:
 						block = "C";
 						break;
 					
@@ -76,7 +76,7 @@ public class BricksManager : MonoBehaviour {
 
 		tmpPos = Vector3.zero;
 
-		for(float r = 0, z = m_startZ; r < m_fieldHeight; r++, z -= 0.5f) {
+		for(float r = 0, z = m_startZ; r < m_fieldHeight; r++, z -= 5f) {
 			for(int c = 0; c < m_fieldWidth; c += 8) {
 				if(m_playField[(int)r,c] != " ") {
 					tmpPos.x = c - 72;

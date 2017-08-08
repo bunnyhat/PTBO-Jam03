@@ -10,6 +10,7 @@ TagManager:
   - Player 2
   - Player 1
   - MidBrick
+  - BrickContainer
   layers:
   - Default
   - TransparentFX
