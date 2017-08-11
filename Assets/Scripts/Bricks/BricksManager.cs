@@ -25,6 +25,7 @@ public class BricksManager : MonoBehaviour {
 	private int m_fieldHeight = 5;
 	private int m_fieldWidth = 17;
 	public string[ , ] m_playField;
+	public int[ , ] m_brickGrid;
 
 	public GameObject m_brickTracker;	
 	public BrickTracker m_midBrickTracker;
@@ -43,7 +44,7 @@ public class BricksManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		m_playField = new string[m_fieldHeight, m_fieldWidth];
-		// m_brickGrid = new int[m_fieldHeight, m_fieldWidth];
+		m_brickGrid = new int[m_fieldHeight, m_fieldWidth];
 		LevelStart();
 		CreateLevel();
 	}
@@ -100,14 +101,12 @@ public class BricksManager : MonoBehaviour {
 					tmpBrick.GetComponent<BrickController>().m_gridLocationR = (int)r;
 					tmpBrick.GetComponent<BrickController>().m_gridLocationC = (int)c;
 					// m_midBrickTracker.m_brickGrid[(int)r,(int)c] = 1; 
+					m_brickGrid[(int)r, (int)c] = 1;
 					tmpBrick.transform.Rotate(0, 90, 0);
 					tmpBrick.name = "Brick";
 					tmpBrick.transform.parent = m_brickContainer;
 					GetBrickType(tmpBrick, (int) r, (int)c);
 				}
-
-				GameObject.FindGameObjectWithTag("Playfield").GetComponent<BrickTracker>().m_brickGrid[(int)r, (int)c] = 1;
-
 			}
 		}
 	}
@@ -159,7 +158,7 @@ public class BricksManager : MonoBehaviour {
 
 		for(int r = 0; r < m_fieldHeight; r++) {
 			for(int c = 0; c < m_fieldWidth; c++) {
-				outS += "[" + GetComponent<BrickTracker>().m_brickGrid[r, c] + "]";
+				outS += "[" + GetComponent<BricksManager>().m_brickGrid[r, c] + "]";
 			}
 			outS += "\n";
 		}

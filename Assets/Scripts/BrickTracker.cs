@@ -3,10 +3,10 @@
 public class BrickTracker : MonoBehaviour {
 
 	public int m_middleBricksLeft;
-	public int[ , ] m_brickGrid;
+	// public int[ , ] m_brickGrid;
 
 	void Start(){
-		m_brickGrid = new int[GameObject.FindGameObjectWithTag("Playfield").GetComponent<BricksManager>().GetFieldHeight, GameObject.FindGameObjectWithTag("Playfield").GetComponent<BricksManager>().GetFieldWidth];
+		// m_brickGrid = new int[GameObject.FindGameObjectWithTag("Playfield").GetComponent<BricksManager>().GetFieldHeight, GameObject.FindGameObjectWithTag("Playfield").GetComponent<BricksManager>().GetFieldWidth];
 		m_middleBricksLeft = 17;
 	}
 

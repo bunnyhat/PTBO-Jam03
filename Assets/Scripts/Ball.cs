@@ -137,7 +137,7 @@ public class Ball : MonoBehaviour {
 			} else if(col.gameObject.GetComponent<MeshRenderer>().material.color == m_player.GetComponent<Player>().m_color) {
 				// Debug.Log("Brick goes Boom!");
 				m_player.GetComponent<Player>().SetScore(1);
-				GameObject.FindGameObjectWithTag("Playfield").GetComponent<BrickTracker>().m_brickGrid[col.gameObject.GetComponent<BrickController>().m_gridLocationR, col.gameObject.GetComponent<BrickController>().m_gridLocationC] = 0;				Debug.Log(col.gameObject.GetComponentInParent<BricksManager>().BrickCountCheck());
+				GameObject.FindGameObjectWithTag("Playfield").GetComponent<BricksManager>().m_brickGrid[col.gameObject.GetComponent<BrickController>().m_gridLocationR, col.gameObject.GetComponent<BrickController>().m_gridLocationC] = 0;				Debug.Log(col.gameObject.GetComponentInParent<BricksManager>().BrickCountCheck());
 				// GetComponent<BrickTracker>().GetBrickCount();
 				// Debug.Log("White Bricks Left in Play: " + GetComponent<BrickTracker>().GetBrickCount());
 				// col.gameObject.GetComponent<BrickController>().m_brickType = BrickType.NONE;
@@ -147,7 +147,7 @@ public class Ball : MonoBehaviour {
 		} else if(col.gameObject.tag == "Brick"){
 			m_player.GetComponent<Player>().SetScore(1);
 			// GetComponent<BrickTracker>().m_brickGrid[col.gameObject.GetComponent<BrickController>().m_gridLocationR, col.gameObject.GetComponent<BrickController>().m_gridLocationC] = 0;
-			GameObject.FindGameObjectWithTag("Playfield").GetComponent<BrickTracker>().m_brickGrid[col.gameObject.GetComponent<BrickController>().m_gridLocationR, col.gameObject.GetComponent<BrickController>().m_gridLocationC] = 0;
+			GameObject.FindGameObjectWithTag("Playfield").GetComponent<BricksManager>().m_brickGrid[col.gameObject.GetComponent<BrickController>().m_gridLocationR, col.gameObject.GetComponent<BrickController>().m_gridLocationC] = 0;
 			Destroy(col.gameObject);
 		}
     }
