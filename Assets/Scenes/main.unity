@@ -118,9 +118,10 @@ GameObject:
   - component: {fileID: 53944998}
   - component: {fileID: 53944999}
   - component: {fileID: 53945000}
+  - component: {fileID: 53945001}
   m_Layer: 0
   m_Name: PlayField
-  m_TagString: Untagged
+  m_TagString: Playfield
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -169,6 +170,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5d375564633f404abf45db4c6cf3a76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &53945001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 53944997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fdf565baca174d40940866bc98ad9d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_middleBricksLeft: 0
 --- !u!1 &72060090
 GameObject:
   m_ObjectHideFlags: 0
@@ -180,7 +193,7 @@ GameObject:
   - component: {fileID: 72060092}
   m_Layer: 0
   m_Name: BricksContainer
-  m_TagString: Untagged
+  m_TagString: BricksContainer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

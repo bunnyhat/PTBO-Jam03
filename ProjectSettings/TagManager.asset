@@ -11,6 +11,8 @@ TagManager:
   - Player 1
   - MidBrick
   - WinText
+  - Playfield
+  - BricksContainer
   layers:
   - Default
   - TransparentFX

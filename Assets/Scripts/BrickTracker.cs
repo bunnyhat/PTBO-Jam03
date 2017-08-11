@@ -3,8 +3,11 @@
 public class BrickTracker : MonoBehaviour {
 
 	public int m_middleBricksLeft;
+	[SerializeField]
+	public int[ , ] m_brickGrid;
 
 	void Start(){
+		m_brickGrid = new int[GameObject.FindGameObjectWithTag("Playfield").GetComponent<BricksManager>().GetFieldHeight, GameObject.FindGameObjectWithTag("Playfield").GetComponent<BricksManager>().GetFieldWidth];
 		m_middleBricksLeft = 17;
 	}
 

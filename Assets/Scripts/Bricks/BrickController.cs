@@ -5,6 +5,8 @@ public class BrickController : MonoBehaviour {
 	public GameObject m_ball;
 	private Rigidbody m_ballRGB;
 	public BrickType m_brickType;
+	public int m_gridLocationR;
+	public int m_gridLocationC;
 
 	// Use this for initialization
 	void Start () {
