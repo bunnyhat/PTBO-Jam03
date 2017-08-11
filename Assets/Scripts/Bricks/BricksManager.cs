@@ -106,7 +106,7 @@ public class BricksManager : MonoBehaviour {
 					GetBrickType(tmpBrick, (int) r, (int)c);
 				}
 
-				m_brickTracker.GetComponent<BrickTracker>().m_brickGrid[(int)r, (int)c] = 1;
+				GameObject.FindGameObjectWithTag("Playfield").GetComponent<BrickTracker>().m_brickGrid[(int)r, (int)c] = 1;
 
 			}
 		}
