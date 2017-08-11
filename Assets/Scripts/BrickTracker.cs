@@ -3,7 +3,6 @@
 public class BrickTracker : MonoBehaviour {
 
 	public int m_middleBricksLeft;
-	[SerializeField]
 	public int[ , ] m_brickGrid;
 
 	void Start(){

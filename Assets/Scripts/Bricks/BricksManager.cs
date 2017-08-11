@@ -25,7 +25,8 @@ public class BricksManager : MonoBehaviour {
 	private int m_fieldHeight = 5;
 	private int m_fieldWidth = 17;
 	public string[ , ] m_playField;
-	
+
+	public GameObject m_brickTracker;	
 	public BrickTracker m_midBrickTracker;
 
 
@@ -99,12 +100,14 @@ public class BricksManager : MonoBehaviour {
 					tmpBrick.GetComponent<BrickController>().m_gridLocationR = (int)r;
 					tmpBrick.GetComponent<BrickController>().m_gridLocationC = (int)c;
 					// m_midBrickTracker.m_brickGrid[(int)r,(int)c] = 1; 
-					GetComponent<BrickTracker>().m_brickGrid[(int)r, (int)c] = 1;
 					tmpBrick.transform.Rotate(0, 90, 0);
 					tmpBrick.name = "Brick";
 					tmpBrick.transform.parent = m_brickContainer;
 					GetBrickType(tmpBrick, (int) r, (int)c);
 				}
+
+				m_brickTracker.GetComponent<BrickTracker>().m_brickGrid[(int)r, (int)c] = 1;
+
 			}
 		}
 	}
