@@ -38,7 +38,7 @@ Transform:
   m_GameObject: {fileID: 1193533635612842}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -1.1620874, y: 0.45, z: -20.48887}
-  m_LocalScale: {x: 2, y: 3, z: 7.25}
+  m_LocalScale: {x: 3, y: 3, z: 7.4}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -106,3 +106,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ball: {fileID: 1476311469030348, guid: 8a7e5c63f4422124fa4b245f39e565ef, type: 2}
+  m_brickType: 0

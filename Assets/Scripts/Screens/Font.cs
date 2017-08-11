@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class Font : MonoBehaviour {
@@ -13,6 +11,6 @@ public class Font : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	m_text.color = Color.Lerp(Color.cyan, Color.magenta, Mathf.PingPong(Time.time, 1));
+		m_text.color = Color.Lerp(Color.cyan, Color.magenta, Mathf.PingPong(Time.time, 1));
 	}
 }

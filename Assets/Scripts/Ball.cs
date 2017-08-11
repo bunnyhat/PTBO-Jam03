@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Ball : MonoBehaviour {
 	private bool m_activeBall;
@@ -9,6 +7,7 @@ public class Ball : MonoBehaviour {
 	private Vector3 m_ballForce;
 	public float m_speed = 30;
 	public GameObject m_player;
+	private BrickTracker m_brickTracker;
 	
 
 	float velz;
@@ -19,6 +18,7 @@ public class Ball : MonoBehaviour {
 		m_ballForce = new Vector3(500.0f, 0.0f, 3500.0f);
 		m_activeBall = false;
 		m_ballPosition = transform.position;
+		m_brickTracker = GetComponent<BrickTracker>();
 	}
 	
 	// Update is called once per frame
@@ -65,37 +65,37 @@ public class Ball : MonoBehaviour {
         //   col.transform.position is the racket's position
         //   col.collider is the racket's collider
 
-			if(this.gameObject.tag == "Player 1") {
-				// Hit the left Racket?
-				if (col.gameObject.name == "RacketLeft") {
-					// Calculate hit Factor
-					float z = hitFactor(transform.position,
-										col.transform.position,
-										col.collider.bounds.size.y);
+			// if(this.gameObject.tag == "Player 1") {
+			// 	// Hit the left Racket?
+			// 	if (col.gameObject.name == "RacketLeft") {
+			// 		// Calculate hit Factor
+			// 		float z = hitFactor(transform.position,
+			// 							col.transform.position,
+			// 							col.collider.bounds.size.y);
 					
-					// Calculate direction, make length=1 via .normalized
-					Vector3 dir = new Vector3(-1, 1, z).normalized;
+			// 		// Calculate direction, make length=1 via .normalized
+			// 		Vector3 dir = new Vector3(-1, 1, z).normalized;
 
-					Debug.Log(dir);
+			// 		Debug.Log(dir);
 
-					// Set Velocity with dir * speed
-					m_rgb.velocity = dir * m_speed;
-				}
+			// 		// Set Velocity with dir * speed
+			// 		m_rgb.velocity = dir * m_speed;
+			// 	}
 
-				// Hit the right Racket?
-				if (col.gameObject.name == "RacketRight") {
-					// Calculate hit Factor
-					float z = hitFactor(transform.position,
-										col.transform.position,
-										col.collider.bounds.size.y);
+			// 	// Hit the right Racket?
+			// 	if (col.gameObject.name == "RacketRight") {
+			// 		// Calculate hit Factor
+			// 		float z = hitFactor(transform.position,
+			// 							col.transform.position,
+			// 							col.collider.bounds.size.y);
 
-					// Calculate direction, make length=1 via .normalized
-					Vector3 dir = new Vector3(1, 1, z).normalized;
+			// 		// Calculate direction, make length=1 via .normalized
+			// 		Vector3 dir = new Vector3(1, 1, z).normalized;
 					
-					// Set Velocity with dir * speed
-					m_rgb.velocity = dir * m_speed;
-				}
-			} 
+			// 		// Set Velocity with dir * speed
+			// 		m_rgb.velocity = dir * m_speed;
+			// 	}
+			// } 
 			// else {
 			// 	// Hit the left Racket?
 			// 	if (col.gameObject.name == "RacketLeft") {
@@ -129,20 +129,25 @@ public class Ball : MonoBehaviour {
 			// }
 
 		if(col.gameObject.tag == "MidBrick") {
-			Debug.Log("Middle Brick Hit by: " + gameObject.tag);
+			// Debug.Log("Middle Brick Hit by: " + gameObject.tag);
 			// Debug.Log("Middle Brick Hit by: " + gameObject.GetComponent<Player>().name);
 			if(col.gameObject.GetComponent<MeshRenderer>().material.color != m_player.GetComponent<Player>().m_color) {
 				col.gameObject.GetComponent<MeshRenderer>().material.color = m_player.GetComponent<Player>().m_color;
-				Debug.Log("Color should change...");
+				// Debug.Log("Color should change...");
 			} else if(col.gameObject.GetComponent<MeshRenderer>().material.color == m_player.GetComponent<Player>().m_color) {
-				Debug.Log("Brick goes Boom!");
+				// Debug.Log("Brick goes Boom!");
 				m_player.GetComponent<Player>().SetScore(1);
+				GameObject.FindGameObjectWithTag("Playfield").GetComponent<BricksManager>().m_brickGrid[col.gameObject.GetComponent<BrickController>().m_gridLocationR, col.gameObject.GetComponent<BrickController>().m_gridLocationC] = 0;				Debug.Log(col.gameObject.GetComponentInParent<BricksManager>().BrickCountCheck());
+				// GetComponent<BrickTracker>().GetBrickCount();
+				// Debug.Log("White Bricks Left in Play: " + GetComponent<BrickTracker>().GetBrickCount());
+				// col.gameObject.GetComponent<BrickController>().m_brickType = BrickType.NONE;
+				// GetComponent<BricksManager>().m_playField[col.gameObject.gridPos, this] = " ";
 				Destroy(col.gameObject);
 			}
-		}
-
-		if(col.gameObject.tag == "Brick"){
+		} else if(col.gameObject.tag == "Brick"){
 			m_player.GetComponent<Player>().SetScore(1);
+			// GetComponent<BrickTracker>().m_brickGrid[col.gameObject.GetComponent<BrickController>().m_gridLocationR, col.gameObject.GetComponent<BrickController>().m_gridLocationC] = 0;
+			GameObject.FindGameObjectWithTag("Playfield").GetComponent<BricksManager>().m_brickGrid[col.gameObject.GetComponent<BrickController>().m_gridLocationR, col.gameObject.GetComponent<BrickController>().m_gridLocationC] = 0;
 			Destroy(col.gameObject);
 		}
     }
