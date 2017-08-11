@@ -158,6 +158,7 @@ MonoBehaviour:
   m_bricktype: 0
   m_startZ: 9
   m_startX: -68
+  m_brickTracker: {fileID: 72060090}
   m_midBrickTracker: {fileID: 53945001}
 --- !u!114 &53945000
 MonoBehaviour:
